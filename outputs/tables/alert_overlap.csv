@@ -1,0 +1,6 @@
+rules_fired_on_txn,transactions,fraudulent,fraud_rate_pct
+1,257335,1844.0,0.717
+2,42691,1363.0,3.193
+3,10789,163.0,1.511
+4,359,7.0,1.95
+5,8,0.0,0.0

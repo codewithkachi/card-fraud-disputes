@@ -1,0 +1,21 @@
+segment,channel,genuine_txns,genuine_declined,false_decline_rate_pct,genuine_value_declined,fraud_caught,fp_per_catch
+Basic,card_present_chip,47606,2056,4.32,274499.0,31,66.3
+Basic,contactless,38144,1494,3.92,48472.0,97,15.4
+Basic,ecommerce,53566,1037,1.94,432208.0,110,9.4
+Basic,manual_entry,3958,145,3.66,14049.0,19,7.6
+Mass,card_present_chip,308737,14420,4.67,2550423.0,140,103.0
+Mass,contactless,224325,9257,4.13,334706.0,277,33.4
+Mass,ecommerce,333879,8399,2.52,4534833.0,862,9.7
+Mass,manual_entry,25081,1058,4.22,125637.0,77,13.7
+Mass Affluent,card_present_chip,275076,13785,5.01,2917761.0,120,114.9
+Mass Affluent,contactless,179327,8110,4.52,323729.0,190,42.7
+Mass Affluent,ecommerce,284990,10074,3.53,6267300.0,410,24.6
+Mass Affluent,manual_entry,21331,1022,4.79,159914.0,47,21.7
+Premier,card_present_chip,180179,10116,5.61,2471558.0,73,138.6
+Premier,contactless,104642,5196,4.97,222966.0,111,46.8
+Premier,ecommerce,176830,8151,4.61,5341493.0,279,29.2
+Premier,manual_entry,13372,730,5.46,128185.0,22,33.2
+Student,card_present_chip,45140,1963,4.35,277955.0,35,56.1
+Student,contactless,36882,1427,3.87,43453.0,63,22.7
+Student,ecommerce,51195,914,1.79,369929.0,104,8.8
+Student,manual_entry,3875,164,4.23,17565.0,14,11.7

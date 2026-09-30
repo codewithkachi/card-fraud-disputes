@@ -1,0 +1,2 @@
+prevented_fraud_value,missed_fraud_txns,realised_fraud_value,fraud_write_off,chargeback_operational_cost,false_declines,false_decline_value,false_decline_lost_margin,false_decline_relationship_cost,review_operational_cost,review_alerts,total_cost_of_fraud
+458029.14,1787.0,162779.17,135208.24028526412,65883.63517052637,99807,26984146.32,158936.6218248,14506.157374007898,534609.6,222754,909144.2546545984

@@ -1,0 +1,7 @@
+detection_band,cards,loss_before_detection,median_minutes
+a. stopped on first txn,208,947.0,0.0
+b. within 1 hour,535,57039.0,12.0
+c. 1-6 hours,124,29869.0,98.0
+d. 6-24 hours,7,3075.0,457.0
+e. over 24 hours,1,403.0,70496.0
+never detected,65,19614.0,

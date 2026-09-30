@@ -1,0 +1,20 @@
+mcc,mcc_description,risk_tier,txns,total_value,fraud_txns,fraud_value,fraud_bps,genuine_decline_rate_pct
+7994,Video Game Arcades / Digital Goods,high,62393,1913991.0,592.0,38804.0,202.7,1.25
+4816,Computer Network Services,medium,78718,4033221.0,840.0,57378.0,142.3,1.34
+5311,Department Stores,medium,149648,11350089.0,460.0,112102.0,98.8,3.54
+5967,Direct Marketing - Inbound Tele,high,20258,3484275.0,209.0,14293.0,41.0,4.46
+5045,"Computers, Peripherals, Software",high,54838,24661864.0,619.0,81050.0,32.9,11.77
+7011,"Lodging - Hotels, Motels",medium,65339,16688630.0,204.0,51984.0,31.1,5.7
+5651,Family Clothing Stores,medium,86605,5577879.0,140.0,15747.0,28.2,3.44
+5732,Electronics Stores,high,94060,29677710.0,229.0,78550.0,26.5,8.1
+5999,Miscellaneous Retail,medium,182219,12332893.0,250.0,31305.0,25.4,3.48
+4511,"Airlines, Air Carriers",high,50526,19492752.0,131.0,40798.0,20.9,9.77
+5691,Mens and Womens Clothing Stores,medium,105569,8671223.0,150.0,18146.0,20.9,3.52
+5814,Fast Food Restaurants,low,191962,3121377.0,120.0,5582.0,17.9,3.3
+5912,Drug Stores and Pharmacies,low,152445,3302321.0,95.0,5462.0,16.5,3.34
+7995,"Betting, Casino Gambling",high,57416,7479266.0,51.0,10999.0,14.7,4.26
+5944,"Jewellery, Watches, Silverware",high,37135,26212359.0,88.0,24460.0,9.3,17.99
+5812,"Eating Places, Restaurants",low,246823,8564818.0,146.0,7000.0,8.2,3.44
+5411,"Grocery Stores, Supermarkets",low,414547,19364620.0,275.0,14682.0,7.6,3.38
+5541,Service Stations,low,219629,13420050.0,139.0,7936.0,5.9,3.4
+4900,Utilities,low,142830,15505439.0,87.0,4529.0,2.9,3.81

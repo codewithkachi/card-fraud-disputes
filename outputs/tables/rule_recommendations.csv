@@ -1,0 +1,9 @@
+rule_id,rule_name,current_action,alerts_per_year,precision_pct,unique_catches,net_contribution_gbp,recommendation,rationale,risk_of_this_change
+R05,HIGH_RISK_MCC_VALUE,review,124702,0.206,29,-198897,Retire,"Costs GBP 198,897/yr more than it saves. 29 unique catches out of 124,702 alerts.","Loses GBP 9,169/yr of fraud prevention. Residual risk sits with counterfeit coverage."
+R06,CNP_NEW_MERCHANT,review,117346,0.61,373,-102878,Retire,"Costs GBP 102,878/yr more than it saves. 373 unique catches out of 117,346 alerts.","Loses GBP 81,471/yr of fraud prevention. Residual risk sits with card_not_present coverage."
+R08,NOCTURNAL_BURST,review,44764,4.568,783,-41474,Retire,"Costs GBP 41,474/yr more than it saves. 783 unique catches out of 44,764 alerts.","Loses GBP 49,442/yr of fraud prevention. Residual risk sits with lost_stolen coverage."
+R01,HIGH_VALUE_ECOM,block,11669,0.66,0,-27977,Retire,"Costs GBP 27,977/yr more than it saves. 0 unique catches out of 11,669 alerts.","Loses GBP 22,344/yr of fraud prevention. Residual risk sits with card_not_present coverage."
+R07,ROUND_AMOUNT_CROSS_BORDER,block,483,0.0,0,-166,Keep under review,Net contribution is close to zero; the decision is inside the uncertainty of the cost assumptions.,Re-test after the next quarter of data.
+R04,DORMANT_REACTIVATION,review,133,4.511,1,-113,Keep under review,Net contribution is close to zero; the decision is inside the uncertainty of the cost assumptions.,Re-test after the next quarter of data.
+R02,VELOCITY_5_IN_60MIN,block,26805,4.439,173,22603,Keep unchanged,"Net contribution GBP 22,603/yr.",None from this change.
+R03,GEO_IMPOSSIBLE_3H_CP,block,50658,1.571,485,55237,Keep unchanged,"Net contribution GBP 55,237/yr.",None from this change.

@@ -1,0 +1,9 @@
+rule_id,rule_name,typology_covered,default_action,threshold_value,threshold_unit,alert_volume,alerts_per_month,true_positives,false_positives,precision_pct,recall_pct,false_positives_per_catch,unique_fraud_catches,unique_fraud_value,fraud_value_alerted,genuine_value_alerted,value_recall_pct,precision_ci_low_pct,precision_ci_high_pct,ci_width_pct
+R05,HIGH_RISK_MCC_VALUE,counterfeit,review,300.0,GBP,124702,10392.0,257.0,124445.0,0.206,5.33,484.2,29.0,12574.0,151161.0,82497264.0,24.35,0.182,0.233,0.051
+R06,CNP_NEW_MERCHANT,card_not_present,review,150.0,GBP,117346,9779.0,716.0,116630.0,0.61,14.84,162.9,373.0,113424.0,297061.0,44543997.0,47.85,0.567,0.656,0.089
+R03,GEO_IMPOSSIBLE_3H_CP,counterfeit,block,3.0,hours,50658,4222.0,796.0,49862.0,1.571,16.5,62.6,485.0,65668.0,100700.0,5011778.0,16.22,1.467,1.683,0.216
+R08,NOCTURNAL_BURST,lost_stolen,review,3.0,transactions,44764,3730.0,2045.0,42719.0,4.568,42.38,20.9,783.0,45894.0,153958.0,4241519.0,24.8,4.379,4.766,0.387
+R02,VELOCITY_5_IN_60MIN,card_testing,block,5.0,transactions,26805,2234.0,1190.0,25615.0,4.439,24.66,21.5,173.0,9073.0,77551.0,2804346.0,12.49,4.199,4.693,0.494
+R01,HIGH_VALUE_ECOM,card_not_present,block,750.0,GBP,11669,972.0,77.0,11592.0,0.66,1.6,150.5,0.0,0.0,87434.0,14053606.0,14.08,0.528,0.824,0.296
+R07,ROUND_AMOUNT_CROSS_BORDER,counterfeit,block,250.0,GBP,483,40.0,0.0,483.0,0.0,0.0,,0.0,0.0,0.0,263000.0,0.0,0.0,0.789,0.789
+R04,DORMANT_REACTIVATION,account_takeover,review,90.0,days,133,11.0,6.0,127.0,4.511,0.12,21.2,1.0,282.0,3334.0,51185.0,0.54,2.084,9.493,7.409
