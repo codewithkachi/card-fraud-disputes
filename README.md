@@ -199,7 +199,7 @@ between them is where precision and recall live.
 | Reconciliation | [`outputs/reconciliation.md`](outputs/reconciliation.md) |
 | Rule recommendations | [`outputs/tables/rule_recommendations.csv`](outputs/tables/rule_recommendations.csv) |
 | Assumptions register | [`outputs/tables/assumptions.csv`](outputs/tables/assumptions.csv) |
-| Power BI rebuild spec | [`powerbi/README.md`](powerbi/README.md) |
+| Power BI report (5 pages, PDF, DAX and build guide) | [`powerbi/README.md`](powerbi/README.md) |
 | Charts | `outputs/charts/` — 11 PNGs |
 | Tables | `outputs/tables/` — 16 CSVs |
 

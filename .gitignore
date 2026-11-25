@@ -6,3 +6,8 @@ data/processed/*
 __pycache__/
 *.pyc
 .ipynb_checkpoints/
+
+# Power BI: only the small expected-values file is committed
+powerbi/data/*
+!powerbi/data/expected_values.csv
+*.pbix

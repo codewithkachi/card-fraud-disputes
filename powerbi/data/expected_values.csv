@@ -1,0 +1,18 @@
+measure,expected
+Transactions,2412960.0
+Total Spend,234854778.9299992
+Fraud Value,620808.3099999998
+Fraud Rate (bps),26.43370992186784
+Prevented Fraud Value,456888.20000000007
+Realised Fraud Value,163920.11000000002
+Prevention Rate,0.7359569655245114
+False Declines,99518.0
+Fraud Caught,3081.0
+False Positives per Catch,32.300551768906196
+Fraud Write Off,136155.9321162955
+Chargeback Op Cost,64298.29867789479
+FD Lost Margin,158185.59416819998
+FD Relationship Cost,14464.153511742845
+Review Op Cost,534609.6
+Total Cost of Fraud,907713.578474133
+Reported Share of True Cost,0.14999878303591502

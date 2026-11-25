@@ -1,0 +1,143 @@
+// =====================================================================
+// Card Fraud and Disputes: DAX measures
+// Create a table called _Measures (Home > Enter data, one blank column,
+// then delete the column), and create each measure on that table.
+// Check every measure against data/expected_values.csv before you build visuals.
+// =====================================================================
+
+// ---------- Volume and value ----------
+Transactions = COUNTROWS ( fct_transactions )
+
+Total Spend = SUM ( fct_transactions[amount] )
+
+Fraud Transactions = CALCULATE ( [Transactions], fct_transactions[is_fraud] = 1 )
+
+Fraud Value = CALCULATE ( [Total Spend], fct_transactions[is_fraud] = 1 )
+
+// Basis points is the industry expression. Never show a raw fraud count on its own.
+Fraud Rate (bps) = DIVIDE ( [Fraud Value], [Total Spend] ) * 10000
+
+// ---------- Detection outcome ----------
+Prevented Fraud Value =
+CALCULATE ( [Total Spend], fct_transactions[is_fraud] = 1, fct_transactions[is_declined] = 1 )
+
+Realised Fraud Value =
+CALCULATE ( [Total Spend], fct_transactions[is_fraud] = 1, fct_transactions[is_declined] = 0 )
+
+Prevention Rate = DIVIDE ( [Prevented Fraud Value], [Fraud Value] )
+
+Fraud Caught =
+CALCULATE ( [Transactions], fct_transactions[is_fraud] = 1, fct_transactions[is_declined] = 1 )
+
+Missed Fraud Txns =
+CALCULATE ( [Transactions], fct_transactions[is_fraud] = 1, fct_transactions[is_declined] = 0 )
+
+False Declines =
+CALCULATE ( [Transactions], fct_transactions[is_fraud] = 0, fct_transactions[is_declined] = 1 )
+
+False Decline Value =
+CALCULATE ( [Total Spend], fct_transactions[is_fraud] = 0, fct_transactions[is_declined] = 1 )
+
+False Decline Rate =
+DIVIDE ( [False Declines], CALCULATE ( [Transactions], fct_transactions[is_fraud] = 0 ) )
+
+// The number a fraud manager feels in their gut
+False Positives per Catch = DIVIDE ( [False Declines], [Fraud Caught] )
+
+// ---------- Rule level (fct_alerts) ----------
+Alert Volume = COUNTROWS ( fct_alerts )
+
+// + 0 so a rule with no true positives shows 0%, not a blank (ROUND_AMOUNT_CROSS_BORDER)
+Alert True Positives = CALCULATE ( [Alert Volume], fct_alerts[is_fraud] = 1 ) + 0
+
+Rule Precision = DIVIDE ( [Alert True Positives], [Alert Volume] )
+
+// CORRECTION to the older README: recall divides by ALL fraud transactions
+// (4,825), not by "fraud caught" (3,081). R08 should read 42.4%, not about 66%.
+// dim_rule only filters fct_alerts, so [Fraud Transactions] is already unaffected by the rule filter.
+Rule Recall = DIVIDE ( [Alert True Positives], [Fraud Transactions] )
+
+// Fraud that only THIS rule saw. rules_on_txn is precomputed in the export
+// (distinct rules that fired on the transaction), which is faster and safer than a row-by-row FILTER.
+Unique Catches = CALCULATE ( [Alert True Positives], fct_alerts[rules_on_txn] = 1 ) + 0
+
+// ---------- Cost model constants (read from the one-row Assumptions table) ----------
+Margin Rate = MAX ( Assumptions[issuer_margin_rate] )
+
+Retry Recovery = MAX ( Assumptions[decline_retry_recovery] )
+
+Recovery Rate = MAX ( Assumptions[recovery_rate_on_realised] )
+
+Chargeback Probability = MAX ( Assumptions[chargeback_probability] )
+
+Case Op Cost = MAX ( Assumptions[case_op_cost_third_party] )
+
+Relationship Cost per FD = MAX ( Assumptions[relationship_cost_per_false_decline] )
+
+Review Cost per Alert =
+MAX ( Assumptions[analyst_cost_per_hour] ) * MAX ( Assumptions[review_minutes_per_alert] ) / 60
+
+// ---------- Cost components ----------
+Fraud Write Off = [Realised Fraud Value] * ( 1 - [Recovery Rate] )
+
+Chargeback Op Cost = [Missed Fraud Txns] * [Chargeback Probability] * [Case Op Cost]
+
+FD Lost Margin = [False Decline Value] * ( 1 - [Retry Recovery] ) * [Margin Rate]
+
+FD Relationship Cost = [False Declines] * [Relationship Cost per FD]
+
+// CORRECTION to the older README: count transactions that went to the review queue
+// (a review rule fired and no block rule did), not every review-rule alert.
+// This reproduces the published GBP 534,610.
+Review Alerts =
+CALCULATE ( [Transactions], fct_transactions[any_review_rule] = 1, fct_transactions[any_block_rule] = 0 )
+
+Review Op Cost = [Review Alerts] * [Review Cost per Alert]
+
+Total Cost of Fraud =
+[Fraud Write Off] + [Chargeback Op Cost] + [FD Lost Margin] + [FD Relationship Cost] + [Review Op Cost]
+
+// The whole argument in one measure: the fraud team reports only the write-off.
+Reported Share of True Cost = DIVIDE ( [Fraud Write Off], [Total Cost of Fraud] )
+
+// ---------- Cost component table for the stacked bar ----------
+// Create as a new table (Modeling > New table). No relationships.
+Cost Components =
+DATATABLE (
+    "Component", STRING,
+    "Sort", INTEGER,
+    {
+        { "Fraud written off", 1 },
+        { "Chargeback handling", 2 },
+        { "False declines: lost margin", 3 },
+        { "False declines: relationship", 4 },
+        { "Review queue", 5 }
+    }
+)
+
+Component Cost =
+SWITCH (
+    SELECTEDVALUE ( 'Cost Components'[Component] ),
+    "Fraud written off", [Fraud Write Off],
+    "Chargeback handling", [Chargeback Op Cost],
+    "False declines: lost margin", [FD Lost Margin],
+    "False declines: relationship", [FD Relationship Cost],
+    "Review queue", [Review Op Cost],
+    [Total Cost of Fraud]
+)
+
+// ---------- Disputes ----------
+Dispute Cases = COUNTROWS ( fct_disputes )
+
+First Party Share =
+DIVIDE (
+    CALCULATE ( [Dispute Cases], fct_disputes[dispute_class] = "First-party misuse" ),
+    [Dispute Cases]
+)
+
+Avg Handling Cost = AVERAGEX ( fct_disputes, fct_disputes[handling_cost] + fct_disputes[scheme_fee] )
+
+// ---------- Time to detection (time_to_detection has no relationships) ----------
+Avg Minutes to Detection = AVERAGE ( time_to_detection[minutes_to_detection] )
+
+Loss Before Detection = SUM ( time_to_detection[loss_before_detection] )
