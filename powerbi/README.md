@@ -32,4 +32,6 @@ The same analysis as the [live HTML dashboard](https://onyekaogbonna.com/dashboa
 
 ## The .pbix file
 
-The `.pbix` is about 108 MB with the data embedded, which is over GitHub's 100 MB file limit, so it is not in the repository. It is available on request, or rebuild it from the steps above.
+Download `card-fraud-disputes-powerbi-v1.0.0.pbix` from the [GitHub release v1.0.0](https://github.com/codewithkachi/card-fraud-disputes/releases/tag/powerbi-v1.0.0). It is about 111 MB with the data embedded, which is over GitHub's 100 MB file limit, so it is a release asset and not in the repository. Open it in Power BI Desktop (Windows). SHA-256: `463a7610767575f7ae67858849e4271e92064c3160856ea0cc2df8469daefbdb`.
+
+You can also rebuild it from the steps above.
